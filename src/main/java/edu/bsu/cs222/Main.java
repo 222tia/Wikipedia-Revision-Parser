@@ -1,5 +1,6 @@
 package edu.bsu.cs222;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Main {
@@ -12,5 +13,10 @@ public class Main {
 
         User user = new User();
         user.userInput(userSearchRequest);
+
+        URL url = new URL();
+        String encodedurl = url.createURL(userSearchRequest);
+        InputStream inputStream = url.connectURL(encodedurl);
+
     }
 }
