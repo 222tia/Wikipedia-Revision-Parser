@@ -14,7 +14,7 @@ public class UserTest {
     }
 
     @Test
-    public void testNoInput(){
+    public void testNoSpaceInput(){
         final User user = new User();
         final String userSearchRequest = "";
         final String output = user.userInput(userSearchRequest);
@@ -22,7 +22,7 @@ public class UserTest {
     }
 
     @Test
-    public void testNoInputSpaces(){
+    public void testNoInputWithSpaces(){
         final User user = new User();
         final String userSearchRequest = "   ";
         final String output = user.userInput(userSearchRequest);
