@@ -8,9 +8,9 @@ public class UserTest {
     @Test
     public void testInput() {
         final User user = new User();
-        final String userSearchRequest = "Frank Zappa";
+        final String userSearchRequest = "Frank_Zappa.json";
         final String output = user.userInput(userSearchRequest);
-        Assertions.assertEquals("Frank Zappa", output);
+        Assertions.assertEquals("Frank_Zappa.json", output);
     }
 
     @Test
