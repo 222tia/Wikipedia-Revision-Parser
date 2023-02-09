@@ -11,10 +11,10 @@ public class ParserTest {
 
     @Test
     public void parseForUsersTest() throws IOException {
-        Parser parser = new Parser();
-        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("resources/Martin_Blume_Jr._Farm.json");
+        revisionParser parser = new revisionParser();
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
         ArrayList<String> output = parser.parseUser(inputStream);
-        Assertions.assertEquals("PrimeBOT", output.get(0));
+        Assertions.assertEquals("Jpgordon", output.get(0));
     }
 }
 
