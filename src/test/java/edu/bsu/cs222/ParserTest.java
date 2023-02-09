@@ -24,5 +24,13 @@ public class ParserTest {
         ArrayList<String> output = parser.parseTimeStamp(inputStream);
         Assertions.assertEquals("2023-01-07T16:32:37Z", output.get(0));
     }
+
+    @Test
+    public void parseForRedirectTest() throws IOException {
+        revisionParser parser = new revisionParser();
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
+        ArrayList<String> output = parser.parseRedirect(inputStream);
+        Assertions.assertEquals("[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"}]", output.get(0));
+    }
 }
 

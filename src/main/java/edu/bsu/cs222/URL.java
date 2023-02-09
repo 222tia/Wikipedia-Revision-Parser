@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 public class URL {
     public String createURL(String articleTitle) {
         articleTitle = URLEncoder.encode(articleTitle, Charset.defaultCharset());
-        return String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=27", articleTitle);
+        return String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=27&redirects", articleTitle);
     }
 
     public InputStream connectURL(String urlString) {

@@ -19,10 +19,17 @@ public class revisionParser {
 
     public ArrayList<String> parseTimeStamp(InputStream inputStream) throws IOException {
         JSONArray result =(JSONArray) JsonPath.read(inputStream, "$..timestamp");
-        ArrayList<String> parsedTimeStampList = new ArrayList<>(); //
+        ArrayList<String> parsedTimeStampList = new ArrayList<>();
         for (int i=0;i < result.toArray().length;i++){
             parsedTimeStampList.add(result.get(i).toString());
         }
         return parsedTimeStampList;
+    }
+
+    public ArrayList<String> parseRedirect(InputStream inputStream) throws IOException {
+        JSONArray result =(JSONArray) JsonPath.read(inputStream, "$..redirects");
+        ArrayList<String> parsedRedirect = new ArrayList<>();
+        parsedRedirect.add(result.get(0).toString());
+        return parsedRedirect;
     }
 }
