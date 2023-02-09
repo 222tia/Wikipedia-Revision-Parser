@@ -16,5 +16,13 @@ public class ParserTest {
         ArrayList<String> output = parser.parseUser(inputStream);
         Assertions.assertEquals("Jpgordon", output.get(0));
     }
+
+    @Test
+    public void parseForTimeStampTest() throws IOException {
+        revisionParser parser = new revisionParser();
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
+        ArrayList<String> output = parser.parseTimeStamp(inputStream);
+        Assertions.assertEquals("2023-01-07T16:32:37Z", output.get(0));
+    }
 }
 

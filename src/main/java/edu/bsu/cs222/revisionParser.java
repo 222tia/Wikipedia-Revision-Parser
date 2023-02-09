@@ -16,4 +16,13 @@ public class revisionParser {
         }
         return parsedUsersList;
     }
+
+    public ArrayList<String> parseTimeStamp(InputStream inputStream) throws IOException {
+        JSONArray result =(JSONArray) JsonPath.read(inputStream, "$..timestamp");
+        ArrayList<String> parsedTimeStampList = new ArrayList<>(); //
+        for (int i=0;i < result.toArray().length;i++){
+            parsedTimeStampList.add(result.get(i).toString());
+        }
+        return parsedTimeStampList;
+    }
 }

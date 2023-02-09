@@ -5,17 +5,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String userSearchRequest;
+        String searchRequest;
 
         Scanner scanner = new Scanner(System.in); //name the scanner something more specific to follow cc
         System.out.println("Enter your search:");
-        userSearchRequest = scanner.nextLine();
+        searchRequest = scanner.nextLine();
 
         User user = new User();
-        user.userInput(userSearchRequest);
+        user.userSearchRequest(searchRequest);
 
         URL url = new URL();
-        String encodedurl = url.createURL(userSearchRequest);
+        String encodedurl = url.createURL(searchRequest);
         InputStream inputStream = url.connectURL(encodedurl);
 
     }
