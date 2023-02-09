@@ -1,0 +1,41 @@
+{
+  "continue": {
+    "rvcontinue": "20230103063141|1131242244",
+    "continue": "||"
+  },
+  "query": {
+    "redirects": [
+      {
+        "from": "Zappa",
+        "to": "Frank Zappa"
+      }
+    ],
+    "pages": {
+      "10672": {
+        "pageid": 10672,
+        "ns": 0,
+        "title": "Frank Zappa",
+        "revisions": [
+          {
+            "user": "Jpgordon",
+            "timestamp": "2023-01-07T16:32:37Z"
+          },
+          {
+            "user": "109.236.0.36",
+            "anon": "",
+            "timestamp": "2023-01-07T16:03:11Z"
+          },
+          {
+            "user": "A. Randomdude0000",
+            "timestamp": "2023-01-05T17:30:34Z"
+          },
+          {
+            "user": "2A00:23C4:7996:B901:74EA:481D:CB34:C5E",
+            "anon": "",
+            "timestamp": "2023-01-05T13:00:13Z"
+          }
+        ]
+      }
+    }
+  }
+}
