@@ -1,16 +1,16 @@
 package edu.bsu.cs222;
 
-import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.DocumentContext;
 import net.minidev.json.JSONArray;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class revisionParser {
-    public ArrayList<String> parseUser(InputStream inputStream) throws IOException {
 
-        JSONArray result =(JSONArray) JsonPath.read(inputStream, "$..user");
+
+    public ArrayList<String> parseUser(DocumentContext jsonContext) {
+
+        JSONArray result = jsonContext.read( "$..user");
         ArrayList<String> parsedUsersList = new ArrayList<>(); //
 
         for (int item=0;item < result.toArray().length;item++){
@@ -20,9 +20,9 @@ public class revisionParser {
         return parsedUsersList;
     }
 
-    public ArrayList<String> parseTimeStamp(InputStream inputStream) throws IOException {
+    public ArrayList<String> parseTimeStamp(DocumentContext jsonContext) {
 
-        JSONArray result =(JSONArray) JsonPath.read(inputStream, "$..timestamp");
+        JSONArray result = jsonContext.read("$..timestamp");
         ArrayList<String> parsedTimeStampList = new ArrayList<>();
 
         for (int item=0;item < result.toArray().length;item++){
@@ -34,11 +34,13 @@ public class revisionParser {
         return parsedTimeStampList;
     }
 
-    public ArrayList<String> parseRedirect(InputStream inputStream) throws IOException {
+    public ArrayList<String> parseRedirect(DocumentContext jsonContext) {
 
-        JSONArray result =(JSONArray) JsonPath.read(inputStream, "$..redirects");
+        JSONArray result = jsonContext.read("$..redirects");
         ArrayList<String> parsedRedirect = new ArrayList<>();
+
         parsedRedirect.add(result.get(0).toString());
+
         return parsedRedirect;
 
     }
