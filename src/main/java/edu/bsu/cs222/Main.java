@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String searchRequest;
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner searchRequestscanner = new Scanner(System.in);
         System.out.println("Enter your search:");
-        searchRequest = scanner.nextLine();
+        searchRequest = searchRequestscanner.nextLine();
 
         User user = new User();
         user.userSearchRequest(searchRequest);
