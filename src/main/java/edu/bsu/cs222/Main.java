@@ -19,17 +19,13 @@ public class Main {
         user.userSearchRequest(searchRequest);
 
         URL url = new URL();
-        String encodedUserURL = url.createURL(searchRequest);
-        InputStream userInputStream = url.connectURL(encodedUserURL);
-        DocumentContext jsonContextUser = JsonPath.parse(userInputStream);
-
-        String encodedTimeStampURL = url.createURL(searchRequest);
-        InputStream timeStampInputStream = url.connectURL(encodedTimeStampURL);
-        DocumentContext jsonContextTimeStamp = JsonPath.parse(timeStampInputStream);
+        String encodedURL = url.createURL(searchRequest);
+        InputStream inputStream = url.connectURL(encodedURL);
+        DocumentContext jsonContext = JsonPath.parse(inputStream);
 
         revisionFormatter formatter = new revisionFormatter();
-        ArrayList<String> userList = formatter.parseUser(jsonContextUser);
-        ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContextTimeStamp);
+        ArrayList<String> userList = formatter.parseUser(jsonContext);
+        ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContext);
         System.out.println(formatter.formatRevisions(userList,timestampList));
 
     }
