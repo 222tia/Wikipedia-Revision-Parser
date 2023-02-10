@@ -39,5 +39,27 @@ public class ParserTest {
         Assertions.assertEquals("[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"}]", output.get(0));
 
     }
+
+    @Test
+    public void parseRevisionListUserTest() {
+        revisionParser parser = new revisionParser();
+        ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
+        Assertions.assertEquals("Jpgordon", revisionArrayList.get(0).user);
+    }
+
+    @Test
+    public void parseRevisionListTimeStampTest() {
+        revisionParser parser = new revisionParser();
+        ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
+        Assertions.assertEquals("2023-01-05T13:00:13Z", revisionArrayList.get(3).timestamp);
+    }
+
+    @Test
+    public void parseRevisionListLengthTest() {
+        revisionParser parser = new revisionParser();
+        ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
+        Assertions.assertEquals(4, revisionArrayList.size());
+    }
+
 }
 
