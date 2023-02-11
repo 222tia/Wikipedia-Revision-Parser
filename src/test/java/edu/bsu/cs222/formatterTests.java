@@ -36,7 +36,7 @@ public class formatterTests {
     @Test
     public void formatRedirectTest(){
         ArrayList<String> unformattedRedirect = new ArrayList<>();
-        unformattedRedirect.add("\"from\":\"Zappa\",\"to\":\"Frank Zappa\"");
+        unformattedRedirect.add("Frank Zappa");
         String formattedRedirect = formatter.formatRedirect(unformattedRedirect);
         Assertions.assertEquals("Redirected to Frank Zappa",formattedRedirect);
     }

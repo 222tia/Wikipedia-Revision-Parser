@@ -21,7 +21,6 @@ public class formatter extends Parser {
     }
 
     public String formatRedirect(ArrayList<String> redirect){
-        String redirectAsString = redirect.toString();
-        return "Redirected to" + redirectAsString;
+        return "Redirected to " + redirect.get(0);
     }
 }

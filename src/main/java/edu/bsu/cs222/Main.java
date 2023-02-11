@@ -24,10 +24,12 @@ public class Main {
         DocumentContext jsonContext = JsonPath.parse(inputStream);
 
         formatter formatter = new formatter();
+        ArrayList<String> redirects = formatter.parseRedirectTo(jsonContext);
         ArrayList<String> userList = formatter.parseUser(jsonContext);
         ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContext);
         ArrayList<String> formattedList = formatter.timestampsAndUsersCombiner(timestampList,userList);
         String formattedStringList = formatter.revisionsToStringFormatter(formattedList);
+        System.out.println(formatter.formatRedirect(redirects));
         System.out.println(formattedStringList);
     }
 }
