@@ -29,7 +29,10 @@ public class Main {
         ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContext);
         ArrayList<String> formattedList = formatter.timestampsAndUsersCombiner(timestampList,userList);
         String formattedStringList = formatter.revisionsToStringFormatter(formattedList);
-        System.out.println(formatter.formatRedirect(redirects));
+        if (formatter.checkIfRedirect(jsonContext)) {
+            System.out.println(formatter.formatRedirect(redirects));
+        }
+
         System.out.println(formattedStringList);
     }
 }

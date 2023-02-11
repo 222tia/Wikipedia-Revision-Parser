@@ -46,15 +46,30 @@ public class Parser {
 
         return parsedTimeStampList;
     }
+    public boolean checkIfRedirect(DocumentContext jsonContext){
+        JSONArray result = jsonContext.read("$..to");
+        return result.size() != 0;
+    }
 
     public ArrayList<String> parseRedirectTo(DocumentContext jsonContext) {
 
         JSONArray result = jsonContext.read("$..to");
         ArrayList<String> parsedRedirect = new ArrayList<>();
+        if (checkIfRedirect(jsonContext)) {
+            parsedRedirect.add(result.get(0).toString());
+            return parsedRedirect;
+        }
+        return null;
+    }
 
-        parsedRedirect.add(result.get(0).toString());
+    public ArrayList<String> parsePageMissing(DocumentContext jsonContext) {
 
-        return parsedRedirect;
+        JSONArray result = jsonContext.read("$..to");
+        ArrayList<String> parsedPageMissing = new ArrayList<>();
+
+        parsedPageMissing.add(result.get(0).toString());
+
+        return parsedPageMissing;
 
     }
 }
