@@ -20,10 +20,19 @@ public class Main {
 
         URL url = new URL();
         String encodedURL = url.createURL(searchRequest);
+
+        try {
+            InputStream inputStream = url.connectURL(encodedURL);
+            DocumentContext jsonContext = JsonPath.parse(inputStream);
+
+        } catch (RuntimeException ioException){
+            System.err.println("Network connection problem" + ioException.getMessage());
+            System.exit(0);
+        }
         InputStream inputStream = url.connectURL(encodedURL);
         DocumentContext jsonContext = JsonPath.parse(inputStream);
 
-        formatter formatter = new formatter();
+        Formatter formatter = new Formatter();
         formatter.parsePageMissing(jsonContext);
         ArrayList<String> redirects = formatter.parseRedirectTo(jsonContext);
         ArrayList<String> userList = formatter.parseUser(jsonContext);

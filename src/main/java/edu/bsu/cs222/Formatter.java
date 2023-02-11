@@ -2,7 +2,7 @@ package edu.bsu.cs222;
 
 import java.util.ArrayList;
 
-public class formatter extends Parser {
+public class Formatter extends Parser {
 
     public ArrayList<String> timestampsAndUsersCombiner (ArrayList<String> parsedTimeStampList, ArrayList<String> parsedUsersList){
 

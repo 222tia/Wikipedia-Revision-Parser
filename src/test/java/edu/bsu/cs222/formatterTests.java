@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class formatterTests {
-    formatter formatter = new formatter();
+    Formatter formatter = new Formatter();
     @Test
     public void combineFirst2Revisions(){
         ArrayList<String> users = new ArrayList<>();
