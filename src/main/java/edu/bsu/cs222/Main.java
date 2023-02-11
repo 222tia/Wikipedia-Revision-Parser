@@ -24,6 +24,7 @@ public class Main {
         DocumentContext jsonContext = JsonPath.parse(inputStream);
 
         formatter formatter = new formatter();
+        formatter.parsePageMissing(jsonContext);
         ArrayList<String> redirects = formatter.parseRedirectTo(jsonContext);
         ArrayList<String> userList = formatter.parseUser(jsonContext);
         ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContext);
@@ -32,7 +33,6 @@ public class Main {
         if (formatter.checkIfRedirect(jsonContext)) {
             System.out.println(formatter.formatRedirect(redirects));
         }
-
         System.out.println(formattedStringList);
     }
 }

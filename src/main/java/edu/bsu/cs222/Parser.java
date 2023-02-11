@@ -62,14 +62,19 @@ public class Parser {
         return null;
     }
 
+    public boolean checkIfPageMissing(DocumentContext jsonContext){
+        JSONArray result = jsonContext.read("$..missing");
+        return result.size() != 0;
+    }
     public ArrayList<String> parsePageMissing(DocumentContext jsonContext) {
 
-        JSONArray result = jsonContext.read("$..to");
-        ArrayList<String> parsedPageMissing = new ArrayList<>();
-
-        parsedPageMissing.add(result.get(0).toString());
-
-        return parsedPageMissing;
+//        JSONArray result = jsonContext.read("$..missing");
+//        ArrayList<String> parsedPageMissing = new ArrayList<>();
+        if (checkIfPageMissing(jsonContext)) {
+            System.err.println("Page does not exist");
+            System.exit(0);
+        }
+        return null;
 
     }
 }
