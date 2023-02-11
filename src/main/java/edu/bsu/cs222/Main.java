@@ -11,9 +11,9 @@ public class Main {
     public static void main(String[] args) {
         String searchRequest;
 
-        Scanner searchRequestscanner = new Scanner(System.in);
+        Scanner searchRequestScanner = new Scanner(System.in);
         System.out.println("Enter your search:");
-        searchRequest = searchRequestscanner.nextLine();
+        searchRequest = searchRequestScanner.nextLine();
 
         User user = new User();
         user.userSearchRequest(searchRequest);
@@ -26,7 +26,8 @@ public class Main {
         revisionFormatter formatter = new revisionFormatter();
         ArrayList<String> userList = formatter.parseUser(jsonContext);
         ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContext);
-        System.out.println(formatter.formatRevisions(userList,timestampList));
-
+        ArrayList<String> formattedList = formatter.timestampsAndUsersCombiner(timestampList,userList);
+        String formattedStringList = formatter.revisionsToStringFormatter(formattedList);
+        System.out.println(formattedStringList);
     }
 }
