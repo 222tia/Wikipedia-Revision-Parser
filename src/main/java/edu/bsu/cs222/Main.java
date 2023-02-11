@@ -23,7 +23,7 @@ public class Main {
         InputStream inputStream = url.connectURL(encodedURL);
         DocumentContext jsonContext = JsonPath.parse(inputStream);
 
-        revisionFormatter formatter = new revisionFormatter();
+        formatter formatter = new formatter();
         ArrayList<String> userList = formatter.parseUser(jsonContext);
         ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContext);
         ArrayList<String> formattedList = formatter.timestampsAndUsersCombiner(timestampList,userList);

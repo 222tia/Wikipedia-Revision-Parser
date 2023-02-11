@@ -16,7 +16,7 @@ public class ParserTest {
     @Test
     public void parseForUsersTest() {
 
-        revisionParser parser = new revisionParser();
+        Parser parser = new Parser();
         ArrayList<String> output = parser.parseUser(jsonContext);
         Assertions.assertEquals("Jpgordon", output.get(0));
 
@@ -25,7 +25,7 @@ public class ParserTest {
     @Test
     public void parseForTimeStampTest() {
 
-        revisionParser parser = new revisionParser();
+        Parser parser = new Parser();
         ArrayList<String> output = parser.parseTimeStamp(jsonContext);
         Assertions.assertEquals("2023-01-07T16:32:37Z", output.get(0));
 
@@ -34,29 +34,29 @@ public class ParserTest {
     @Test
     public void parseForRedirectTest() {
 
-        revisionParser parser = new revisionParser();
-        ArrayList<String> output = parser.parseRedirect(jsonContext);
-        Assertions.assertEquals("[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"}]", output.get(0));
+        Parser parser = new Parser();
+        ArrayList<String> output = parser.parseRedirectTo(jsonContext);
+        Assertions.assertEquals("Frank Zappa", output.get(0));
 
     }
 
     @Test
     public void parseRevisionListUserTest() {
-        revisionParser parser = new revisionParser();
+        Parser parser = new Parser();
         ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
         Assertions.assertEquals("Jpgordon", revisionArrayList.get(0).user);
     }
 
     @Test
     public void parseRevisionListTimeStampTest() {
-        revisionParser parser = new revisionParser();
+        Parser parser = new Parser();
         ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
         Assertions.assertEquals("2023-01-05T13:00:13Z", revisionArrayList.get(3).timestamp);
     }
 
     @Test
     public void parseRevisionListLengthTest() {
-        revisionParser parser = new revisionParser();
+        Parser parser = new Parser();
         ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
         Assertions.assertEquals(4, revisionArrayList.size());
     }

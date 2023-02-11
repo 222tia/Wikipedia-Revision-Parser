@@ -2,7 +2,7 @@ package edu.bsu.cs222;
 
 import java.util.ArrayList;
 
-public class revisionFormatter extends revisionParser{
+public class formatter extends Parser {
 
     public ArrayList<String> timestampsAndUsersCombiner (ArrayList<String> parsedTimeStampList, ArrayList<String> parsedUsersList){
 
@@ -19,4 +19,9 @@ public class revisionFormatter extends revisionParser{
         return String.join("", revisionsList);
 
     }
+
+    public String formatRedirect(ArrayList<String> redirect){
+        String redirectAsString = redirect.toString();
+        return "Redirected to" + redirectAsString;
     }
+}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class revisionParser {
+public class Parser {
 
     public ArrayList<Revision> parse(DocumentContext jsonContext){
         List<Map<String, Object>> jsonList = jsonContext.read("$..revisions[*]");
@@ -47,9 +47,9 @@ public class revisionParser {
         return parsedTimeStampList;
     }
 
-    public ArrayList<String> parseRedirect(DocumentContext jsonContext) {
+    public ArrayList<String> parseRedirectTo(DocumentContext jsonContext) {
 
-        JSONArray result = jsonContext.read("$..redirects");
+        JSONArray result = jsonContext.read("$..to");
         ArrayList<String> parsedRedirect = new ArrayList<>();
 
         parsedRedirect.add(result.get(0).toString());
