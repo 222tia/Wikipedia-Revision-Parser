@@ -1,13 +1,18 @@
 package edu.bsu.cs222;
 
 import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Parser {
+public class Parser extends URL{
+
+    public DocumentContext createJSONContext(){
+        return JsonPath.parse(connectURL());
+    }
 
     public ArrayList<Revision> parse(DocumentContext jsonContext){
         List<Map<String, Object>> jsonList = jsonContext.read("$..revisions[*]");
@@ -51,6 +56,7 @@ public class Parser {
         return result.size() != 0;
     }
 
+
     public ArrayList<String> parseRedirectTo(DocumentContext jsonContext) {
 
         JSONArray result = jsonContext.read("$..to");
@@ -66,15 +72,10 @@ public class Parser {
         JSONArray result = jsonContext.read("$..missing");
         return result.size() != 0;
     }
-    public ArrayList<String> parsePageMissing(DocumentContext jsonContext) {
-
-//        JSONArray result = jsonContext.read("$..missing");
-//        ArrayList<String> parsedPageMissing = new ArrayList<>();
+    public void parsePageMissing(DocumentContext jsonContext) {
         if (checkIfPageMissing(jsonContext)) {
             System.err.println("Page does not exist");
             System.exit(0);
         }
-        return null;
-
     }
 }

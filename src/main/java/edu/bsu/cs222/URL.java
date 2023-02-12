@@ -6,17 +6,17 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
-public class URL {
-    public String createURL(String articleTitle) {
-
-        articleTitle = URLEncoder.encode(articleTitle, Charset.defaultCharset());
+public class URL extends User{
+    public String createURL() {
+        String searchRequest = blankSearchRequestCheck();
+        String articleTitle = URLEncoder.encode(searchRequest, Charset.defaultCharset());
 
         return String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=27&redirects", articleTitle);
 
     }
 
-    public InputStream connectURL(String urlString) {
-
+    public InputStream connectURL() {
+        String urlString = createURL();
         try {
 
             java.net.URL url = new java.net.URL(urlString);

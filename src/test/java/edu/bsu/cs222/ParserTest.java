@@ -42,23 +42,29 @@ public class ParserTest {
 
     @Test
     public void parseRevisionListUserTest() {
+
         Parser parser = new Parser();
         ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
         Assertions.assertEquals("Jpgordon", revisionArrayList.get(0).user);
+
     }
 
     @Test
     public void parseRevisionListTimeStampTest() {
+
         Parser parser = new Parser();
         ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
         Assertions.assertEquals("2023-01-05T13:00:13Z", revisionArrayList.get(3).timestamp);
+
     }
 
     @Test
     public void parseRevisionListLengthTest() {
+
         Parser parser = new Parser();
         ArrayList<Revision> revisionArrayList = parser.parse(jsonContext);
         Assertions.assertEquals(4, revisionArrayList.size());
+
     }
 
 }
