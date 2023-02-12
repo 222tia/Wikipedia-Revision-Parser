@@ -27,7 +27,6 @@ public class Parser extends URL{
     }
 
     public ArrayList<String> parseUser(DocumentContext jsonContext) {
-
         JSONArray result = jsonContext.read( "$..user");
         ArrayList<String> parsedUsersList = new ArrayList<>();
 
@@ -56,9 +55,7 @@ public class Parser extends URL{
         return result.size() != 0;
     }
 
-
-    public ArrayList<String> parseRedirectTo(DocumentContext jsonContext) {
-
+    protected ArrayList<String> parseRedirectTo(DocumentContext jsonContext) {
         JSONArray result = jsonContext.read("$..to");
         ArrayList<String> parsedRedirect = new ArrayList<>();
         if (checkIfRedirect(jsonContext)) {
@@ -72,6 +69,7 @@ public class Parser extends URL{
         JSONArray result = jsonContext.read("$..missing");
         return result.size() != 0;
     }
+
     public void parsePageMissing(DocumentContext jsonContext) {
         if (checkIfPageMissing(jsonContext)) {
             System.err.println("Page does not exist");

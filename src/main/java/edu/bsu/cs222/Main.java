@@ -1,25 +1,17 @@
 package edu.bsu.cs222;
 
-import com.jayway.jsonpath.DocumentContext;
 
-import java.util.ArrayList;
+import com.jayway.jsonpath.DocumentContext;
 
 public class Main {
     public static void main(String[] args) {
-
-        Parser parser = new Parser();
+        Formatter formatter = new Formatter();
         try {
-            DocumentContext jsonContext = parser.createJSONContext();
-
-            Formatter formatter = new Formatter();
+            DocumentContext jsonContext = formatter.createJSONContext();
             formatter.parsePageMissing(jsonContext);
-            ArrayList<String> redirects = formatter.parseRedirectTo(jsonContext);
-            ArrayList<String> userList = formatter.parseUser(jsonContext);
-            ArrayList<String> timestampList = formatter.parseTimeStamp(jsonContext);
-            ArrayList<String> formattedList = formatter.timestampsAndUsersCombiner(timestampList, userList);
-            String formattedStringList = formatter.revisionsToStringFormatter(formattedList);
+            String formattedStringList = formatter.revisionsToStringFormatter(jsonContext);
             if (formatter.checkIfRedirect(jsonContext)) {
-                System.out.println(formatter.formatRedirect(redirects));
+                System.out.println(formatter.formatRedirect(jsonContext));
             }
             System.out.println(formattedStringList);
         } catch (RuntimeException ioException) {
