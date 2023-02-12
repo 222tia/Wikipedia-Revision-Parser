@@ -7,7 +7,7 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
 public class URL extends User{
-    public String createURL() {
+    protected String createURL() {
         String searchRequest = blankSearchRequestCheck();
         String articleTitle = URLEncoder.encode(searchRequest, Charset.defaultCharset());
 

@@ -24,7 +24,7 @@ public class FormatterTest extends Formatter{
         Assertions.assertEquals(expectedList,output);
     }
    @Test
-    public void formatFirst2Revisions(){
+    public void formatFirst4Revisions(){
         String expectedFormattedRevisions = """
                 2023-01-07T16:32:37Z Jpgordon
                 2023-01-07T16:03:11Z 109.236.0.36

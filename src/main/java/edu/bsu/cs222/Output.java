@@ -3,7 +3,7 @@ package edu.bsu.cs222;
 
 import com.jayway.jsonpath.DocumentContext;
 
-public class Main {
+public class Output {
     public static void main(String[] args) {
         Formatter formatter = new Formatter();
         try {

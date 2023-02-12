@@ -3,6 +3,7 @@ package edu.bsu.cs222;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
 import java.io.ByteArrayInputStream;
 
 public class UserTest extends User{

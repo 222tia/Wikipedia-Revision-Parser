@@ -27,11 +27,11 @@ public class Parser extends URL{
     }
 
     public ArrayList<String> parseUser(DocumentContext jsonContext) {
-        JSONArray result = jsonContext.read( "$..user");
+        JSONArray usersResult = jsonContext.read( "$..user");
         ArrayList<String> parsedUsersList = new ArrayList<>();
 
-        for (int item=0;item < result.toArray().length;item++){
-            parsedUsersList.add(result.get(item).toString());
+        for (int item=0;item < usersResult.toArray().length;item++){
+            parsedUsersList.add(usersResult.get(item).toString());
         }
 
         return parsedUsersList;
@@ -39,12 +39,12 @@ public class Parser extends URL{
 
     public ArrayList<String> parseTimeStamp(DocumentContext jsonContext) {
 
-        JSONArray result = jsonContext.read("$..timestamp");
+        JSONArray timestampResult = jsonContext.read("$..timestamp");
         ArrayList<String> parsedTimeStampList = new ArrayList<>();
 
-        for (int item=0;item < result.toArray().length;item++){
+        for (int item=0;item < timestampResult.toArray().length;item++){
 
-            parsedTimeStampList.add(result.get(item).toString());
+            parsedTimeStampList.add(timestampResult.get(item).toString());
 
         }
 
