@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class User {
 
-    protected String getUserSearchRequest(){
+    protected String getUserSearchRequest() {
 
         Scanner searchRequestScanner = new Scanner(System.in);
         System.out.println("Enter your search:");
@@ -13,13 +13,14 @@ public class User {
 
     }
 
-    protected String blankSearchRequestCheck(){
+    protected String blankSearchRequestCheck() {
         String searchRequest = getUserSearchRequest();
-        if (searchRequest.trim().equals("")){
+            if (searchRequest.trim().equals("")) {
 
-            System.err.println("User did not provide an input");
-            System.exit(0);
+                System.err.println("User did not provide an input");
+                System.exit(0);
+            }
+            return searchRequest;
+        }
 
-        } return searchRequest;
     }
-}
