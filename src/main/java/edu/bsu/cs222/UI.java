@@ -1,73 +1,68 @@
 package edu.bsu.cs222;
 
-import com.jayway.jsonpath.DocumentContext;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
+
 
 public class UI extends Application {
-        public static void main(String[] args){
-            launch(args);
-        }
+    public static void main(String[] args){ launch(args); }
 
-        private final Button searchButton = new Button("Search");
-        private final TextField searchRequestField = new TextField();
-        private final TextField revisionsOutputField = new TextField();
+    private final Button searchButton = new Button("Search");
+    private final Label searchLabel = new Label("Enter your search:");
+    private final Label outputLabel = new Label("Revisions:");
+    private final TextField searchField = new TextField();
+    private final TextArea outputField = new TextArea();
 
-        @Override
-        public void start(Stage primaryStage) {
-            revisionsOutputField.setEditable(false);
-            configure(primaryStage);
-            configureSearchButton();
-        }
+    @Override
+    public void start(Stage primaryStage) {
+        configureInterface(primaryStage);
+    }
 
-        private void configure(Stage stage){
-            stage.setTitle("Wikipedia Revisions Parser");
-            stage.setScene(new Scene(createRoot()));
-            stage.sizeToScene();
-            stage.show();
-        }
+    private void configureInterface(Stage stage){
+        stage.setTitle("Wikipedia Revision Parser");
+        stage.setScene(new Scene(userInterface()));
+        stage.show();
+    }
 
-        private Pane createRoot() {
-            VBox root = new VBox();
-            root.getChildren().addAll(
-                    new Label("Enter Search Request"),
-                    searchRequestField,
-                    searchButton,
-                    new Label("Revisions"),
-                    revisionsOutputField);
-            return root;
-        }
+    private Pane userInterface() {
+        VBox interfaceVBox = new VBox();
+        interfaceVBox.setPrefSize(400,500);
 
-        private void configureSearchButton() {
-            searchButton.setOnAction(event -> getFormattedRevisions());
-        }
+        configureLabelStyle();
+        configureOutputField();
+        configureSearchButton();
 
-        private void getFormattedRevisions() {
-            String input = searchRequestField.getText();
-            System.setIn(new ByteArrayInputStream(input.getBytes()));
-            Formatter formatter = new Formatter();
-            try {
-                DocumentContext jsonContext = formatter.createJSONContext();
-                formatter.parsePageMissing(jsonContext);
-                String formattedStringList = formatter.revisionsToStringFormatter(jsonContext);
-                if (formatter.checkIfRedirect(jsonContext)) {
-                    revisionsOutputField.setText(formatter.formatRedirect(jsonContext));
-                }
-                revisionsOutputField.setText(formattedStringList);
-            } catch (RuntimeException ioException) {
-                revisionsOutputField.setText("Network connection problem" + ioException.getMessage());
-//                System.exit(0);
-            }
+        interfaceVBox.getChildren().addAll(
+                searchLabel, searchField, searchButton,
+                outputLabel, outputField);
 
-        }
+        return interfaceVBox;
+    }
+
+    private void configureLabelStyle(){
+        searchLabel.setFont(Font.font("Calibri", 15));
+        outputLabel.setFont(Font.font("Calibri", 15));
+    }
+
+    private void configureOutputField(){
+        outputField.setPrefSize(400, 400);
+        outputField.setEditable(false);
+        outputField.setWrapText(true);
+    }
+
+    private void configureSearchButton() {
+        searchButton.setFont(Font.font("Calibri", 15));
+        searchButton.setOnAction(event -> outputField.appendText(searchField.getText()));
+}
 }
 
 
