@@ -7,6 +7,9 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 
+group 'edu.bsu.cs222'
+version '1.0-SNAPSHOT'
+
 repositories {
     mavenCentral()
 }
@@ -30,4 +33,4 @@ javafx {
     version = '13.0.2'
 }
 
-mainClassName = 'edu.bsu.cs222.Output'
+mainClassName = 'edu.bsu.cs222.UI'

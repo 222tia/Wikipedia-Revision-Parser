@@ -72,8 +72,7 @@ public class Parser extends URL{
 
     public void parsePageMissing(DocumentContext jsonContext) {
         if (checkIfPageMissing(jsonContext)) {
-            System.err.println("Page does not exist");
-            System.exit(0);
+            throw new Error("Page does not exist");
         }
     }
 }
