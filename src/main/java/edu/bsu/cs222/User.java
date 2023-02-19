@@ -16,9 +16,7 @@ public class User {
     protected String blankSearchRequestCheck() {
         String searchRequest = getUserSearchRequest();
             if (searchRequest.trim().equals("")) {
-
-                System.err.println("User did not provide an input");
-                System.exit(0);
+                throw new Error("User did not provide an input");
             }
             return searchRequest;
         }

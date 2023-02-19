@@ -17,6 +17,9 @@ public class Output {
         } catch (RuntimeException ioException) {
             System.err.println("Network connection problem" + ioException.getMessage());
             System.exit(0);
+        } catch (Error error ){
+            System.err.println(error.getMessage());
+            System.exit(0);
         }
     }
 }

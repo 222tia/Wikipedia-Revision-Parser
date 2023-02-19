@@ -1,5 +1,6 @@
 package edu.bsu.cs222;
 
+import com.jayway.jsonpath.DocumentContext;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 
 
 public class UI extends Application {
@@ -59,10 +61,39 @@ public class UI extends Application {
         outputField.setWrapText(true);
     }
 
+    protected String noLineFoundCheck(){
+        if (searchField.getText().isEmpty()){
+            throw new Error("User did not provide an input");
+        } return searchField.getText();
+    }
+
     private void configureSearchButton() {
         searchButton.setFont(Font.font("Calibri", 15));
-        searchButton.setOnAction(event -> outputField.appendText(searchField.getText()));
+
+        Formatter formatter = new Formatter();
+
+        searchButton.setOnAction(event -> {
+            try {
+                String userSearch = noLineFoundCheck();
+                System.setIn(new ByteArrayInputStream(userSearch.getBytes()));
+                DocumentContext jsonContext = formatter.createJSONContext();
+                formatter.parsePageMissing(jsonContext);
+                String formattedStringList = formatter.revisionsToStringFormatter(jsonContext);
+                outputField.setText("");
+                if (formatter.checkIfRedirect(jsonContext)) {
+                    outputField.appendText(formatter.formatRedirect(jsonContext));
+                }
+                outputField.appendText(formattedStringList);
+            } catch (RuntimeException ioException) {
+                outputField.setText("Network connection problem" + ioException.getMessage());
+            } catch (Error error) {
+                outputField.setText(error.getMessage());
+            }
+        });
+
+
+    }
 }
-}
+
 
 
