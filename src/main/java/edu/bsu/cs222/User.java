@@ -14,15 +14,13 @@ public class User {
         } catch (RuntimeException NoSuchElementException){
             throw new Error("User did not provide an input");
         }
-
     }
 
-    protected String blankSearchRequestCheck() {
+    protected String blankSearchRequestWithSpacesCheck() {
         String searchRequest = getUserSearchRequest();
             if (searchRequest.trim().equals("")) {
                 throw new Error("User did not provide an input");
             }
             return searchRequest;
         }
-
     }

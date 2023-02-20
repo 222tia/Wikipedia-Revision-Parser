@@ -24,5 +24,15 @@ public class UserTest extends User{
             assert(error).getMessage().equals("User did not provide an input");
         }
     }
+    @Test
+    public void testBlankInputWithSpaces() {
+        try {
+            final String input = "";
+            System.setIn(new ByteArrayInputStream(input.getBytes()));
+            blankSearchRequestWithSpacesCheck();
+        } catch (Error error){
+            assert(error).getMessage().equals("User did not provide an input");
+        }
+    }
 
 }
