@@ -14,5 +14,15 @@ public class UserTest extends User{
         final String output = getUserSearchRequest();
         Assertions.assertEquals("Frank Zappa", output);
     }
+    @Test
+    public void testBlankInput() {
+        try {
+            final String input = "";
+            System.setIn(new ByteArrayInputStream(input.getBytes()));
+            getUserSearchRequest();
+        } catch (Error error){
+            assert(error).getMessage().equals("User did not provide an input");
+        }
+    }
 
 }

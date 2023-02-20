@@ -9,7 +9,11 @@ public class User {
 
         Scanner searchRequestScanner = new Scanner(System.in);
         System.out.println("Enter your search:");
-        return searchRequestScanner.nextLine();
+        try {
+            return searchRequestScanner.nextLine();
+        } catch (RuntimeException NoSuchElementException){
+            throw new Error("User did not provide an input");
+        }
 
     }
 
