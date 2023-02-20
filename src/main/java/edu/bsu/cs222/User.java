@@ -7,20 +7,23 @@ public class User {
 
     protected String getUserSearchRequest() {
 
-        Scanner searchRequestScanner = new Scanner(System.in);
         System.out.println("Enter your search:");
+        String searchRequest = blankSearchRequestCheck();
+        blankSearchRequestWithSpacesCheck(searchRequest);
+        return searchRequest;
+    }
+    public String blankSearchRequestCheck() {
         try {
+            Scanner searchRequestScanner = new Scanner(System.in);
             return searchRequestScanner.nextLine();
         } catch (RuntimeException NoSuchElementException){
             throw new Error("User did not provide an input");
         }
     }
-
-    protected String blankSearchRequestWithSpacesCheck() {
-        String searchRequest = getUserSearchRequest();
+    protected void blankSearchRequestWithSpacesCheck(String searchRequest) {
             if (searchRequest.trim().equals("")) {
                 throw new Error("User did not provide an input");
             }
-            return searchRequest;
-        }
     }
+    }
+

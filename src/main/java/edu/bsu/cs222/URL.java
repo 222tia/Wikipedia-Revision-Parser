@@ -8,7 +8,7 @@ import java.nio.charset.Charset;
 
 public class URL extends User{
     protected String createURL() {
-        String searchRequest = blankSearchRequestWithSpacesCheck();
+        String searchRequest = getUserSearchRequest();
         String articleTitle = URLEncoder.encode(searchRequest, Charset.defaultCharset());
 
         return String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=27&redirects", articleTitle);

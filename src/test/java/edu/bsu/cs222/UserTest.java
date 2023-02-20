@@ -27,9 +27,8 @@ public class UserTest extends User{
     @Test
     public void testBlankInputWithSpaces() {
         try {
-            final String input = "";
-            System.setIn(new ByteArrayInputStream(input.getBytes()));
-            blankSearchRequestWithSpacesCheck();
+            final String input = "  ";
+            blankSearchRequestWithSpacesCheck(input);
         } catch (Error error){
             assert(error).getMessage().equals("User did not provide an input");
         }
